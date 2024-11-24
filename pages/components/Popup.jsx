@@ -142,8 +142,8 @@ export default function Popup ({data, isOpen, setOpen, alterEvents}) {
                 </div>
             </div>
             <div style={{"display":"flex","flexDirection":"row", "gap":"10px", "margin":"20px auto", "justifyContent":"space-around"}}>
-                <button onClick={handleBooking} style={{"backgroundColor":"green"}}>BOOK</button>
-                <button onClick={()=>setOpen(false)} style={{"backgroundColor":"red"}}>CANCEL</button>
+                <button onClick={handleBooking} style={{"backgroundColor":"green","color":"white","width":"50px","height":"20px"}}>BOOK</button>
+                <button onClick={()=>setOpen(false)} style={{"backgroundColor":"red","color":"white","width":"50px","height":"20px"}}>CANCEL</button>
             </div>
         </div>
     </div>
