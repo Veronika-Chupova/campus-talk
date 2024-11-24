@@ -1,0 +1,69 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* CALENDAR STYLES */
+.react-calendar {
+  border: none !important;
+  margin: 30px auto;
+}
+.react-calendar__navigation__arrow {
+  width: 40px;
+}
+.react-calendar__tile {
+  height: 30px;
+}
+.available-event-date {
+  background-color: lightgreen !important;
+}
+.unavailable-event-date {
+  background-color: grey !important;
+}
+
+/* MAIN BOARD */
+.main-board {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  background-color: #fafffa;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
