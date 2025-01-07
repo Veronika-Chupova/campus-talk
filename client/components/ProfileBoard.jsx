@@ -1,4 +1,4 @@
-import avatar from "../../public/assets/10491830.jpg"
+import avatar from "../public/assets/10491830.jpg"
 
 export default function ProfileBoard () {
     return <div style={{"display":"flex", "flexDirection":"column", "alignContent":"center", "justifyContent":"center", "gap":"20px"}}>
