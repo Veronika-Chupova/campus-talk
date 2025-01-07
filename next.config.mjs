@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  dir: './client',
+  distDir: 'client/.next',
   reactStrictMode: true,
 };
 
