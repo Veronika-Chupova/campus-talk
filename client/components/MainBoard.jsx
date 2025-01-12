@@ -5,7 +5,7 @@ import Calendar from "react-calendar"
 import EventCard from "./EventCard"
 import Popup from "./Popup"
 import {v4 as uuidv4} from "uuid"
-import avatar from "@/public/assets/7294793.jpg"
+import avatar from "../public/assets/7294793.jpg"
 
 export default function MainBoard () {
     const unitedEvents = useSelector(state => state.slots.data)
@@ -23,6 +23,22 @@ export default function MainBoard () {
     //         return newArr
     //     })
     // }, [])
+    useEffect(() => {
+        const fetchUsers = async () => {
+          try {
+            const res = await fetch("/api/helloMongo") // Call the API route
+            if (!res.ok) {
+              throw new Error(`HTTP error! status: ${res.status}`)
+            }
+            const data = await res.json()
+            console.log("OK data", data)
+          } catch (error) {
+            console.error("Failed to fetch users:", error)
+          }
+        }
+    
+        fetchUsers()
+      }, [])
     useEffect (() => {
         setVisibleEvents([])
     }, [unitedEvents])
