@@ -1,3 +1,6 @@
+import syntheticData from "./syntheticData"
+import dbSchemas from "./dbSchemas"
+
 export default async function getValidatedCollection ( db, collectionName ) {
 
     // Check if the collection exists
@@ -16,7 +19,20 @@ export default async function getValidatedCollection ( db, collectionName ) {
       }
   
     } else {
-      console.log("Collection already exists")
+      const collection = db.collection( collectionName )
+      const recordCount = await collection.countDocuments()
+      if (recordCount === 0) {
+        // console.log("synthetic data ----------------------------------------------")
+        // console.log(syntheticData[collectionName])
+        // console.log("synthetic data ----------------------------------------------")
+        try {
+          await collection.insertMany ( syntheticData[collectionName] )
+        } catch (err) {
+          console.error("Validation Error:", err)
+        } 
+      } else {
+        console.log ("Data exists")
+      }
     }
   
     return db.collection(collectionName)

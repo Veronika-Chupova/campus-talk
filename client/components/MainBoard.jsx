@@ -13,16 +13,7 @@ export default function MainBoard () {
     const [visibleEvents, setVisibleEvents] = useState ([])
     const [popupIsOpen, setPopupOpen] = useState (false)
     const [popupData, setPopupData] = useState ()
-    // const [unitedEvents, setUnitedEvents] = useState ([...slots])
 
-    // useEffect (() => {
-    //     setUnitedEvents (prev => {
-    //         const newArr = prev.map( each => {
-    //             return {...each, slots: [...timeSlicer(each?.start, each?.end, 30), ...timeSlicer(each?.start, each?.end, 60)]} 
-    //         })
-    //         return newArr
-    //     })
-    // }, [])
     useEffect(() => {
         const fetchUsers = async () => {
           try {
@@ -31,14 +22,13 @@ export default function MainBoard () {
               throw new Error(`HTTP error! status: ${res.status}`)
             }
             const data = await res.json()
-            console.log("OK data", data)
           } catch (error) {
             console.error("Failed to fetch users:", error)
           }
-        }
-    
+        }    
         fetchUsers()
       }, [])
+
     useEffect (() => {
         setVisibleEvents([])
     }, [unitedEvents])
@@ -52,21 +42,6 @@ export default function MainBoard () {
             : null   
         return availableDate || unavailableDate
     }
-
-    // function timeSlicer (start, end, duration) {
-    //     const startTime = new Date(start)
-    //     const endTime = new Date (end)
-    //     const slotStartTime = []
-    //     const endPoint = new Date( endTime?.setMinutes( endTime?.getMinutes() - duration ) )
-    //     let currentTime = startTime
-    //     while ( currentTime <= endPoint ) {
-    //         let newDate = new Date (currentTime)
-    //         const slotEnd = new Date ( newDate?.setMinutes( newDate?.getMinutes() + duration ) )
-    //         slotStartTime.push({slotStart: currentTime, slotEnd: slotEnd, duration: duration, available: true})
-    //         currentTime = new Date( slotEnd )
-    //     }
-    //     return slotStartTime
-    // }
 
     function handleDayClick (value) {
         const newVisibleEvents = unitedEvents.filter( event => event.date.toDateString() === value.toDateString() )

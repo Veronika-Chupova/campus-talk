@@ -1,5 +1,4 @@
 import { MongoClient } from "mongodb"
-import dbSchemas from "./dbSchemas"
 
 const uri = process.env.MONGO_URI
 const options={}
