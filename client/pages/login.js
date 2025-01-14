@@ -17,8 +17,9 @@ export default function Login () {
         })
   
         if (res?.error) {
-            console.log(res?.error)
+            console.error(res?.error)
         } else if (res?.ok) {
+            console.log('Success!')
             // Redirect after successful login
             router.push("/")
         }

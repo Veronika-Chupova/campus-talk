@@ -18,22 +18,20 @@ export default async function getValidatedCollection ( db, collectionName ) {
           console.log ("There is no schema with the given name")
       }
   
-    } else {
-      const collection = db.collection( collectionName )
-      const recordCount = await collection.countDocuments()
-      if (recordCount === 0) {
-        // console.log("synthetic data ----------------------------------------------")
-        // console.log(syntheticData[collectionName])
-        // console.log("synthetic data ----------------------------------------------")
-        try {
-          await collection.insertMany ( syntheticData[collectionName] )
-        } catch (err) {
-          console.error("Validation Error:", err)
-        } 
-      } else {
-        console.log ("Data exists")
-      }
-    }
+    } 
+    // else {
+    //   const collection = db.collection( collectionName )
+    //   const recordCount = await collection.countDocuments()
+    //   if (recordCount === 0) {
+    //     try {
+    //       await collection.insertMany ( syntheticData[collectionName] )
+    //     } catch (err) {
+    //       console.error("Validation Error:", err)
+    //     } 
+    //   } else {
+    //     console.log ("Data exists")
+    //   }
+    // }
   
     return db.collection(collectionName)
   }

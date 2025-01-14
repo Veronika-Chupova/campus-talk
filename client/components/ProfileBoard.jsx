@@ -1,6 +1,11 @@
+import { useRouter } from "next/router"
 import avatar from "../public/assets/10491830.jpg"
 
 export default function ProfileBoard () {
+    const router = useRouter()
+    const id = router.query.id
+    console.log(id) //gives undefined
+
     return <div style={{"display":"flex", "flexDirection":"column", "alignContent":"center", "justifyContent":"center", "gap":"20px"}}>
         <img src={avatar.src} style={{"borderRadius":"50%", "width":"100px", "height":"100px", "margin":"0 auto"}}/>
         <h1 style={{"margin":"0 auto"}}>Name Surname</h1>
