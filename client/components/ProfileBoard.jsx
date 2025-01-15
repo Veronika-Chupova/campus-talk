@@ -7,6 +7,7 @@ export default function ProfileBoard () {
     console.log(id) //gives undefined
 
     return <div style={{"display":"flex", "flexDirection":"column", "alignContent":"center", "justifyContent":"center", "gap":"20px"}}>
+        <button onClick={() => {router.push('/')}}>Back</button>
         <img src={avatar.src} style={{"borderRadius":"50%", "width":"100px", "height":"100px", "margin":"0 auto"}}/>
         <h1 style={{"margin":"0 auto"}}>Name Surname</h1>
         <div style={{"display":"grid", "gridTemplateColumns": "100px 250px", "textAlign":"left", "rowGap":"10px", "margin":"0 auto"}}>

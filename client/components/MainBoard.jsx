@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { useRouter } from "next/router"
 import { bookSlot } from "../store/slices/slotSlice"
 import Calendar from "react-calendar"
 import EventCard from "./EventCard"
@@ -8,6 +9,7 @@ import {v4 as uuidv4} from "uuid"
 import avatar from "../public/assets/7294793.jpg"
 
 export default function MainBoard () {
+    const router = useRouter()
     const unitedEvents = useSelector(state => state.slots.data)
     const dispatch = useDispatch()
     const [visibleEvents, setVisibleEvents] = useState ([])
@@ -54,6 +56,9 @@ export default function MainBoard () {
     }
 
     return <div className="main-board">
+            <div>Welcome block</div>
+            <button onClick={() => {router.push('/mytalks/1')}}>My talks</button>
+            <button onClick={() => {router.push('/mycalendar/1')}}>My slots</button>
             <Calendar 
                 locale="en-US"
                 showNeighboringMonth={false}
