@@ -3,7 +3,7 @@ import Footer from "../../components/Footer"
 import ProfileBoard from "../../components/ProfileBoard"
 
 export default function Profile () {
-    return <div style={{}}>
+    return <div>
         <Header/>
         <ProfileBoard />
         <Footer/>

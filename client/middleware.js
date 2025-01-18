@@ -9,28 +9,25 @@ export default withAuth({
   // },
   callbacks: {
     async authorized(req) {
-      console.log("Middleware triggered. Cookies:", req.req.cookies)
+      const rawToken = await getToken(
+        {req: req.req, 
+        secret: process.env.NEXTAUTH_SECRET, 
+        raw: true
+      })
 
-    const rawToken = await getToken(
-      {req: req.req, 
-      secret: process.env.NEXTAUTH_SECRET, 
-      raw: true
-    })
+      if (!rawToken) {
+        return false
+      }
+      //Decode token
+      let decodedToken
+      try {
+        decodedToken = jwt.decode(rawToken)
+      } catch (error) {
+        console.error('Failed to decode token:', error)
+        return false
+      }
 
-    if (!rawToken) {
-      console.log("no session token")
-      return false
-    }
-    //Decode token
-    let decodedToken
-    try {
-      decodedToken = jwt.decode(rawToken)
-    } catch (error) {
-      console.error('Failed to decode token:', error)
-      return false
-    }
-
-    return true
+      return true
     }
   }
 })

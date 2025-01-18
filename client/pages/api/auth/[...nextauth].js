@@ -14,7 +14,6 @@ export default NextAuth({
         name: 'Credentials',
         credentials: {},
         async authorize(credentials) {
-            console.log("Authorize triggered. Token:", credentials)
           // Find the user in the db
           const client = await clientPromise
           const usersCollection = client.db(dbName).collection(USERS)
@@ -26,7 +25,7 @@ export default NextAuth({
             return { id: user._id.toString(), email: user.email }
           } else {
             // If no user is found or password doesn't match
-            return null;
+            return null
           }
         },
       }),
@@ -37,7 +36,6 @@ export default NextAuth({
     jwt: {
         maxAge: 60 * 60 * 24 * 30,
         async encode({ token, secret, maxAge }) {
-            console.log("Encode triggered. Token:", token)
                 const currentTime = Math.floor( Date.now() / 1000 )           // Current time in seconds
                 const expirationTime = currentTime + maxAge             
 
@@ -51,10 +49,8 @@ export default NextAuth({
 
         },
         async decode({ secret, token }) {
-            console.log("Decode triggered. Token:", token)
             try {
                 const decoded = jwt.verify(token, secret)
-                console.log("Decoded JWT Token:", decoded)
                 return decoded
             } catch (err) {
                 console.error("JWT Decode Error:", err)
@@ -64,14 +60,12 @@ export default NextAuth({
     },
     callbacks: {
         async session({ session, token }) {
-            console.log("Session triggered. Session:", session)
-            console.log("Session triggered. Token:", token)
+            console.log("Session is triggered")
             if (token) {
                 session.user.id = token.sub
                 session.user.email = token.email
                 session.user.roles = token.roles || []  // Default to empty array if roles are undefined
             }
-            console.log("Session: ", session)
             return session
         },
     },

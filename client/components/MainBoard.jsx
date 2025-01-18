@@ -57,8 +57,8 @@ export default function MainBoard () {
 
     return <div className="main-board">
             <div>Welcome block</div>
-            <button onClick={() => {router.push('/mytalks/1')}}>My talks</button>
-            <button onClick={() => {router.push('/mycalendar/1')}}>My slots</button>
+            <button onClick={() => {router.push('/talks')}}>My talks</button>
+            <button onClick={() => {router.push('/mycalendar')}}>My slots</button>
             <Calendar 
                 locale="en-US"
                 showNeighboringMonth={false}

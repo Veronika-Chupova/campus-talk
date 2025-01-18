@@ -2,19 +2,25 @@ import { v4 as uuidv4 } from "uuid"
 import { useState, useEffect } from 'react'
 
 export default function TimePicker ({ hours, minutes, setSlotData, slotDate }) {
-    const [selectedTime, setSelectedTime] = useState ({
+    const initialTime = {
         hour: "",
         minute: "",
-    })
+    }
+    const [selectedTime, setSelectedTime] = useState (initialTime)
     const year = slotDate.getFullYear() || 0
     const month = slotDate.getMonth() || 0
     const day = slotDate.getDate() || 0
 
     useEffect( () => {
-        const { hour, minute } = selectedTime
-        const slotTime = new Date(year, month, day, hour, minute)
-        setSlotData(prev => slotTime)
+        if ( !(selectedTime.hour === "" && selectedTime.minute === "") ) {
+            const { hour, minute } = selectedTime
+            const slotTime = new Date(year, month, day, hour, minute)
+            setSlotData(prev => slotTime)
+        }
     }, [selectedTime])
+    useEffect( () => {
+        setSelectedTime (initialTime)
+    }, [slotDate])
 
     function amPmGenerator (hour) {
         if (hour < 12) return hour + 'am'

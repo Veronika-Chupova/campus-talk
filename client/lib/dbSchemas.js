@@ -112,7 +112,7 @@ const dbSchemas = {
                 bsonType: "array",
                 items: {
                     bsonType: "object",
-                    required: ["chunkStart", "chunkEnd", "durationMinutes"],
+                    required: ["chunkStart", "chunkEnd", "durationMinutes", "available"],
                     properties: {
                         chunkStart: {
                             bsonType: "date",
@@ -126,6 +126,10 @@ const dbSchemas = {
                             bsonType: "int",
                             enum: [60, 30],
                             description: "Must be an integer representing the duration of the chunk in minutes",
+                        },
+                        available: {
+                            bsonType: "bool",
+                            description: "Must be a boolean pointer of slot availability for booking"
                         },
                         booked: {
                             bsonType: "objectId",
